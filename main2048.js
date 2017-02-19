@@ -150,6 +150,7 @@ $(document).keydown(function(event){
 	}
 });
 document.addEventListener('touchstart',function(event){
+	event.preventDefault();
 	startX=event.touches[0].pageX;
 	startY=event.touches[0].pageY;
 });
