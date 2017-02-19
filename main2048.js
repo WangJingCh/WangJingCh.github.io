@@ -154,6 +154,7 @@ document.addEventListener('touchstart',function(event){
 	startY=event.touches[0].pageY;
 });
 document.addEventListener('touchend',function(event){
+	event.preventDefault();
 	endX=event.changedTouches[0].pageX;
 	endY=event.changedTouches[0].pageY;
 
