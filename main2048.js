@@ -150,18 +150,21 @@ $(document).keydown(function(event){
 	}
 });
 document.addEventListener('touchstart',function(event){
-	event.preventDefault();
 	startX=event.touches[0].pageX;
 	startY=event.touches[0].pageY;
+
 });
-document.addEventListener('touchend',function(event){
+document.addEventListener('touchmove',function(event){
 	event.preventDefault();
+})
+document.addEventListener('touchend',function(event){
 	endX=event.changedTouches[0].pageX;
 	endY=event.changedTouches[0].pageY;
 
 	var deltaX=endX-startX;
 	var deltaY=endY-startY;
 	if(Math.abs(deltaX)<0.3*documentWidth&&Math.abs(deltaY)<0.3*documentWidth)
+		return;
 	if(Math.abs(deltaX)>=Math.abs(deltaY)){
 		if(deltaX>0){
 			//moveRight
@@ -177,6 +180,8 @@ document.addEventListener('touchend',function(event){
 				setTimeout('isgameover()',300);
 			}
 		}
+
+		console.log(1)
 	}else{
 		if(deltaY>0){
 			//moveDown
