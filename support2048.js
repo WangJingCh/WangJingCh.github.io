@@ -55,7 +55,7 @@ function canMoveLeft(board){
 }
 function canMoveRight(board){
 	for(var i=0;i<4;i++){
-		for(var j=0;j<3;j++){
+		for(var j=2;j>=0;j--){
 			if(board[i][j]!=0)
 				if(board[i][j+1]==0||board[i][j+1]==board[i][j])
 					return true;
@@ -63,8 +63,8 @@ function canMoveRight(board){
 	}
 }
 function canMoveUp(board){
-	for(var i=1;i<4;i++){
-		for(var j=0;j<4;j++){
+	for(var j=0;j<4;j++){
+		for(var i=1;i<4;i++){
 			if(board[i][j]!=0)
 				if(board[i-1][j]==0||board[i-1][j]==board[i][j])
 					return true;
@@ -73,8 +73,8 @@ function canMoveUp(board){
 	return false;
 }
 function canMoveDown(board){
-	for(var i=0;i<3;i++){
-		for(var j=0;j<4;j++){
+	for(var j=0;j<4;j++){
+		for(var i=2;i>=0;i--){
 			if(board[i][j]!=0)
 				if(board[i+1][j]==0||board[i+1][j]==board[i][j])
 					return true;

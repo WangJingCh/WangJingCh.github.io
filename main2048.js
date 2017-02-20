@@ -222,7 +222,7 @@ function moveLeft(){
 						board[i][j]=0;
 						continue;
 					}
-					else if(board[i][k]==board[i][j]&&noBlockHorizontal(i,k,j,board)&&!hasConflicted[i][k]){
+					else if(board[i][k]==board[i][j]&&noBlockHorizontal(i,k,j,board)){
 						//move
 						showMoveAnimation(i,j,i,k);
 						//add
@@ -247,7 +247,7 @@ function moveRight(){
 		return false;
 	//moveRight
 	for(var i=0;i<4;i++){
-		for(var j=3;j>=0;j--){
+		for(var j=2;j>=0;j--){
 			if(board[i][j]!=0)
 				for(var k=3;k>j;k--){
 					if(board[i][k]==0&&noBlockHorizontal(i,j,k,board)){
@@ -256,7 +256,7 @@ function moveRight(){
 						board[i][j]=0;
 						continue;
 					}
-					else if(board[i][k]==board[i][j]&&noBlockHorizontal(i,j,k,board)&&!hasConflicted[i][k]){
+					else if(board[i][k]==board[i][j]&&noBlockHorizontal(i,j,k,board)){
 						//move
 						showMoveAnimation(i,j,i,k);
 						//add
@@ -278,8 +278,8 @@ function moveUp(){
 	if(!canMoveUp(board))
 		return false;
 	//moveLeft
-	for(var i=1;i<4;i++){
-		for(var j=0;j<4;j++){
+	for(var j=0;j<4;j++){
+		for(var i=1;i<4;i++){
 			if(board[i][j]!=0){
 				for(var k=0;k<i;k++){
 					if(board[k][j]==0&&noBlockHorizontalU(j,k,i,board)){
@@ -289,13 +289,13 @@ function moveUp(){
 						board[i][j]=0;
 						continue;
 					}
-					else if(board[k][j]==board[i][j]&&noBlockHorizontalU(j,k,i,board)&&!hasConflicted[i][k]){
+					else if(board[k][j]==board[i][j]&&noBlockHorizontalU(j,k,i,board)){
 						//move
 						showMoveAnimation(i,j,k,j);
 						//add
-						board[k][j]+=board[i][j];
+						board[k][j]*=2;
 						board[i][j]=0;
-						score+=board[i][k];
+						score+=board[k][j];
 						updateScore(score);
 
 						hasConflicted[i][k]=true;
@@ -311,25 +311,25 @@ function moveUp(){
 function moveDown(){
 	if(!canMoveDown(board))
 		return false;
-	//moveLeft
-	for(var i=3;i>=0;i--){
-		for(var j=0;j<4;j++){
+	//moveDown
+	for(var j=0;j<4;j++){
+		for(var i=2;i>=0;j--){
 			if(board[i][j]!=0){
 				for(var k=3;k>i;k--){
-					if(board[k][j]==0&&noBlockHorizontalU(j,k,i,board)){
+					if(board[k][j]==0&&noBlockHorizontalU(j,i,k,board)){
 						//move
 						showMoveAnimation(i,j,k,j);
 						board[k][j]=board[i][j];
 						board[i][j]=0;
 						continue;
 					}
-					else if(board[k][j]==board[i][j]&&noBlockHorizontalU(j,k,i,board)&&!hasConflicted[i][k]){
+					else if(board[k][j]==board[i][j]&&noBlockHorizontalU(j,k,i,board)){
 						//move
 						showMoveAnimation(i,j,k,j);
 						//add
-						board[k][j]+=board[i][j];
+						board[k][j]*=2;
 						board[i][j]=0;
-						score+=board[i][k];
+						score+=board[k][j];
 						updateScore(score);
 
 						hasConflicted[i][k]=true;
